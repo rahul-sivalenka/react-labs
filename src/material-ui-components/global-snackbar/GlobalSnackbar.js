@@ -12,7 +12,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import WarningIcon from "@material-ui/icons/Warning";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { useSnackbar } from "./snackbarContext";
 
 const SlideTransition = props => {
@@ -53,13 +53,9 @@ const useContentWrapperStyles = makeStyles(theme => ({
   }
 }));
 
-const SnackbarContentWrapper = ({
-  messageInfo,
-  onClose,
-  className = "",
-  ...other
-}) => {
+const SnackbarContentWrapper = forwardRef((props, ref) => {
   const classes = useContentWrapperStyles({});
+  const { messageInfo, onClose, className = "", ...other } = props;
 
   if (!messageInfo) {
     return null;
@@ -72,6 +68,7 @@ const SnackbarContentWrapper = ({
 
   return (
     <SnackbarContent
+      ref={ref}
       className={clsx(classes[variant], className)}
       aria-describedby={messageId}
       message={
@@ -138,6 +135,7 @@ const GlobalSnackbar = () => {
         vertical: "top",
         horizontal: "center"
       }}
+      TransitionComponent={SlideTransition}
       open={open}
       autoHideDuration={5000}
       onClose={handleClose}
