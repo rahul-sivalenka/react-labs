@@ -90,18 +90,15 @@ const SnackbarContentWrapper = forwardRef((props, ref) => {
       {...other}
     />
   );
-};
+});
 
-const useStyles = makeStyles(theme => ({
-  close: {
-    padding: theme.spacing(0.5)
-  }
-}));
-
-const GlobalSnackbar = () => {
+const GlobalSnackbar = ({
+  autoHideDuration = 5000,
+  verticalOrigin = "top",
+  horizontalOrigin = "center"
+}) => {
   console.log("GlobalSnackbar called");
 
-  const classes = useStyles({});
   const [messageInfo, setMessageInfo] = useState(null);
   const [open, setOpen] = useState(false);
   const { currentMessage, removeOldMessages } = useSnackbar();
@@ -132,12 +129,12 @@ const GlobalSnackbar = () => {
     <Snackbar
       key={messageInfo ? messageInfo.key : undefined}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "center"
+        vertical: verticalOrigin,
+        horizontal: horizontalOrigin
       }}
       TransitionComponent={SlideTransition}
       open={open}
-      autoHideDuration={5000}
+      autoHideDuration={autoHideDuration}
       onClose={handleClose}
       onExited={handleExited}
     >
