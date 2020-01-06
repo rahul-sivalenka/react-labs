@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import "./App.css";
-import GlobalSnackbarDemo from "./material-ui-components/global-snackbar";
+import GlobalSnackbarDemoApp from "./material-ui-components/GlobalSnackbarDemoApp";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,7 +74,7 @@ const tabs = [
   {
     id: "global-snackbar",
     label: "Global Snackbar",
-    component: GlobalSnackbarDemo
+    component: GlobalSnackbarDemoApp
   }
 ];
 

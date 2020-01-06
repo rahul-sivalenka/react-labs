@@ -1,0 +1,4 @@
+- Wrap the App component snackbarcontextprovider
+- Add the GlobalSnackbar component in the JSX of App component at the end of it
+- Call useSnackbar hook in any component where u want to show messages
+- Call the corresponding method from the hook and pass in message
